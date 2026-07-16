@@ -141,7 +141,9 @@ a {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 1.6rem;
-  white-space: nowrap;
+  /* Allow text to wrap on very small screens instead of overflowing horizontally */
+  white-space: normal;
+  line-height: 1.5;
 }
 
 .eyebrow::before {
