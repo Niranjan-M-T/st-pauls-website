@@ -216,6 +216,16 @@ const services = [
     transition: opacity 350ms var(--ease), transform 350ms var(--ease-spring);
   }
 
+  /* Invisible bridge to prevent hover loss between button and menu */
+  .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -1.5rem;
+    left: 0;
+    right: 0;
+    height: 1.5rem;
+  }
+
   .dropdown:hover .dropdown-menu,
   .dropdown:focus-within .dropdown-menu {
     opacity: 1;
