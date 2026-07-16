@@ -39,8 +39,8 @@
   --radius-md: 1.25rem;
 
   /* Type */
-  --font-display: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Lora', 'Georgia', serif;
+  --font-body: 'Open Sans', 'Segoe UI', system-ui, sans-serif;
 }
 
 * {
