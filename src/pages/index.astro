@@ -340,9 +340,14 @@ const areas = ['Kothanur', 'Hennur', 'Horamavu', 'Kammanahalli', 'Kalyan Nagar',
 <style>
   /* ---------- Hero ---------- */
   .hero {
-    padding: clamp(10rem, 15vw, 11.5rem) 0 clamp(3rem, 5vw, 4.5rem);
+    padding: 13rem 0 clamp(3rem, 5vw, 4.5rem);
     position: relative;
     overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      padding-top: clamp(9.5rem, 15vw, 11.5rem);
+    }
   }
 
   .hero::before {
