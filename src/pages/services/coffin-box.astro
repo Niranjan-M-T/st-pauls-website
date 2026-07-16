@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Gallery from '../../components/Gallery.astro';
+
+const gallery = [
+  { src: '/Assets/coffin-wood-cross.jpg', alt: 'Polished reddish wooden coffin with gold cross and lace trim', label: 'Premium polished' },
+  { src: '/Assets/coffin-black-open.jpg', alt: 'Black coffin with white satin lining and gold cross', label: 'Black & satin' },
+  { src: '/Assets/coffin-wood-closed.jpg', alt: 'Light wooden coffin with carved cross inlay', label: 'Classic wood', position: '50% 45%' },
+  { src: '/Assets/coffin-golden.jpg', alt: 'Golden finish wooden coffin with wooden cross', label: 'Golden finish', position: '50% 55%' },
+  { src: '/Assets/coffin-black-lining.jpg', alt: 'Black coffin opened to show white satin interior lining', label: 'Lined interior' },
+];
+---
+
+<Layout title="Premium Coffin Boxes Bangalore" description="A wide selection of premium wooden and standard coffin boxes for dignified funerals in Bangalore.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="Crafted with reverence"
+      title="Coffin boxes,"
+      titleAccent="chosen with care."
+      lede="Premium wooden and standard coffins — prepared with cross, lining and floral dressing — to honour your loved one within your budget."
+    />
+
+    <section class="section">
+      <div class="container split">
+        <div class="split-media">
+          <div class="cutout image-reveal">
+            <img src="/Assets/Enhanced/coffin_premium_black_transparent.png" alt="Black coffin with gold trim, cross and floral wreath — St Paul's Bangalore" />
+          </div>
+        </div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">A dignified selection</span>
+          <h2>For every budget, <em class="serif-italic text-gold">without compromise</em></h2>
+          <p>We offer a comprehensive range of coffin boxes to suit different budgets and preferences. Each coffin is crafted with care and respect to provide a dignified resting place for your loved one.</p>
+          <p>Our team helps you select the appropriate size, material and finish — and ensures all religious and personal requirements are honoured.</p>
+          <ul class="check-list">
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Premium polished wood &amp; standard options</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Cross, satin lining and fittings included</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Fresh flower arrangement on request</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> All sizes, delivered with the hearse</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container split">
+        <div class="split-copy reveal">
+          <span class="eyebrow">Dressed &amp; ready</span>
+          <h2>Prepared by hand, <em class="serif-italic text-gold">flowers and all</em></h2>
+          <p>Every coffin leaves us fully dressed — cross fitted, lining pressed, handles polished and fresh flowers arranged on the lid. Nothing is left for your family to organise.</p>
+          <p>Tell us the size and finish you need, and we will have it ready and delivered with the hearse.</p>
+        </div>
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/Enhanced/enhanced_wooden_coffin.png" alt="Polished wooden coffin dressed with white flowers and a cross — St Paul's Bangalore" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Gallery
+      id="coffins"
+      kicker="A range to choose from"
+      heading="Finishes for"
+      emphasis="every farewell"
+      note="Tap any photograph to view it larger. Every coffin shown here is one we prepare ourselves."
+      items={gallery}
+    />
+
+    <CtaBand
+      accent="Speak to us"
+      heading="Speak to us — we'll guide you gently through the options."
+      note="Tell us your needs and budget; we will arrange everything respectfully."
+    />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Transparent-PNG coffins float straight on the paper — no frame.
+     drop-shadow (not box-shadow) so the shadow follows the cut silhouette. */
+  .cutout {
+    display: grid;
+    place-items: center;
+    padding: 1.5rem 0.5rem;
+  }
+
+  /* width:auto so the box hugs the silhouette — width:100% + max-height
+     would letterbox the portrait cutout inside a much wider empty box. */
+  .cutout img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 30rem;
+    filter: drop-shadow(0 26px 30px rgba(16, 27, 49, 0.3));
+  }
+
+  @media (max-width: 900px) {
+    .cutout img { max-height: 22rem; }
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout title="Contact Us" description="Get in touch with St. Paul's Funeral Undertakers in Bangalore. 24/7 service. Call 77609 11567.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="We answer, day or night"
+      title="Reach us"
+      titleAccent="the moment you need us."
+      lede="No forms, no waiting. Call either number and a member of our team will take care of everything from that moment on."
+      showCall={false}
+    />
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <span class="eyebrow">24/7 Helpline</span>
+            <div class="contact-tels" data-stagger="90">
+              <a href="tel:+917760911567" class="contact-tel-card frame reveal">
+                <div class="frame-core tel-core">
+                  <span class="tel-label">Primary line</span>
+                  <span class="tel-big">77609 11567</span>
+                  <span class="tel-hint">Tap to call now</span>
+                </div>
+              </a>
+              <a href="tel:+917996794943" class="contact-tel-card frame reveal">
+                <div class="frame-core tel-core">
+                  <span class="tel-label">Alternate line</span>
+                  <span class="tel-big">79967 94943</span>
+                  <span class="tel-hint">Tap to call now</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="contact-address reveal">
+              <h3>Our office</h3>
+              <p class="addr">
+                Aathma Vidhya Nagar,<br />
+                Doddagubbi Main Road,<br />
+                Bangalore &ndash; 560077
+              </p>
+              <p class="landmark"><span class="text-gold">Landmark</span> — Near Lulu Supermarket, Kothanur</p>
+            </div>
+          </div>
+
+          <div class="split-media split-media--tall">
+            <div class="frame image-reveal">
+              <div class="frame-core">
+                <img src="/Assets/imgi_48_st-pauls-funeral-undertaker-kothanur-bangalore-dead-body-freezer-box-on-hire-do82w206hx.jpg" alt="St Paul's Funeral Undertakers vehicle outside a church in Bangalore" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container">
+        <blockquote class="contact-note reveal">
+          <p>&ldquo;In your most difficult hour, you will not be alone. Call us and we take care of the rest.&rdquo;</p>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .contact-tels {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2.6rem;
+  }
+
+  .contact-tel-card {
+    display: block;
+    transition: transform 550ms var(--ease-spring), box-shadow 550ms var(--ease);
+  }
+
+  .contact-tel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.85) inset, 0 40px 70px -34px rgba(16, 27, 49, 0.42);
+  }
+
+  .contact-tel-card:active { transform: scale(0.985); }
+
+  .tel-core {
+    padding: 1.5rem 1.9rem;
+    background: var(--paper-2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .tel-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .tel-big {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+    transition: color 300ms var(--ease);
+  }
+
+  .contact-tel-card:hover .tel-big { color: var(--gold); }
+
+  .tel-hint {
+    font-size: 0.78rem;
+    color: var(--muted-2);
+  }
+
+  .contact-address h3 {
+    margin-bottom: 0.9rem;
+  }
+
+  .addr {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink-3);
+  }
+
+  .landmark {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .contact-note {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-note p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.5;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

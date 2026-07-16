@@ -1,0 +1,294 @@
+---
+export interface Props {
+  id: string;
+  variant?: 'gentle' | 'urgent';
+  kicker: string;
+  heading: string;
+  emphasis?: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+  dismissLabel: string;
+  /** ms before it appears — never instant, that reads as an ad */
+  delay?: number;
+  /** 'session' = once per visit, 'local' = once ever */
+  remember?: 'session' | 'local';
+}
+
+const {
+  id,
+  variant = 'gentle',
+  kicker,
+  heading,
+  emphasis,
+  body,
+  ctaLabel,
+  ctaHref,
+  dismissLabel,
+  delay = 1800,
+  remember = 'session',
+} = Astro.props;
+---
+
+<div
+  class={`popup popup--${variant}`}
+  data-popup={id}
+  data-delay={delay}
+  data-remember={remember}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+  aria-describedby={`${id}-body`}
+  hidden
+>
+  <div class="popup-card">
+    <button class="popup-close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+
+    <span class="popup-emblem" aria-hidden="true">
+      {variant === 'urgent' ? <span class="popup-pulse"></span> : null}
+      {variant === 'urgent' ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+          <path d="M12 4v16M7 9h10" />
+        </svg>
+      )}
+    </span>
+
+    <span class="eyebrow">{kicker}</span>
+    <h2 id={`${id}-title`}>
+      {heading} {emphasis && <em class="serif-italic text-gold">{emphasis}</em>}
+    </h2>
+    <p id={`${id}-body`}>{body}</p>
+
+    <div class="popup-actions">
+      <a href={ctaHref} class="btn btn--gold popup-cta">
+        {ctaLabel}
+        <span class="btn-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+        </span>
+      </a>
+      <button type="button" class="popup-dismiss">{dismissLabel}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .popup {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 5vw, 2.5rem);
+    /* near-opaque: a full-screen backdrop-filter costs GPU on mobile for little gain */
+    background: rgba(16, 27, 49, 0.62);
+    opacity: 0;
+    transition: opacity 320ms var(--ease);
+  }
+
+  .popup[hidden] { display: none; }
+  .popup.is-open { opacity: 1; }
+
+  .popup-card {
+    position: relative;
+    width: min(30rem, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 50px 90px -35px rgba(0, 0, 0, 0.6);
+    transform: translateY(12px) scale(0.97);
+    transition: transform 380ms var(--ease);
+  }
+
+  .popup.is-open .popup-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 250ms var(--ease), color 250ms var(--ease);
+  }
+
+  .popup-close svg { width: 0.9rem; height: 0.9rem; }
+  .popup-close:hover { background: var(--paper-3); color: var(--ink); }
+
+  .popup-emblem {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin: 0 auto 1.25rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--gold-2);
+  }
+
+  .popup-emblem svg { width: 1.4rem; height: 1.4rem; }
+
+  .popup--urgent .popup-emblem {
+    background: var(--gold);
+    color: var(--paper);
+  }
+
+  .popup-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    animation: popup-pulse 2s var(--ease) infinite;
+  }
+
+  @keyframes popup-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    70%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .popup-card h2 {
+    margin: 0.35rem 0 0.75rem;
+    font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+    line-height: 1.2;
+  }
+
+  .popup-card p {
+    margin: 0 auto;
+    max-width: 26rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .popup-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+  }
+
+  .popup-cta { width: 100%; justify-content: center; }
+
+  .popup-dismiss {
+    padding: 0.35rem 0.5rem;
+    border: 0;
+    background: none;
+    color: var(--muted-2);
+    font-family: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 250ms var(--ease);
+  }
+
+  .popup-dismiss:hover { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .popup, .popup-card { transition: none; }
+    .popup-pulse { animation: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-popup]').forEach((el) => {
+    const popup = el as HTMLElement;
+    const id = popup.getAttribute('data-popup') ?? 'popup';
+    const delay = Number(popup.getAttribute('data-delay') ?? 1800);
+    const remember = popup.getAttribute('data-remember') === 'local' ? 'local' : 'session';
+    const key = `stpauls:popup:${id}`;
+
+    const store = () => {
+      try {
+        return remember === 'local' ? window.localStorage : window.sessionStorage;
+      } catch {
+        return null; // private mode / blocked storage
+      }
+    };
+
+    // Already seen this visit? Don't nag.
+    try {
+      if (store()?.getItem(key)) return;
+    } catch { /* ignore */ }
+
+    const card = popup.querySelector('.popup-card') as HTMLElement | null;
+    if (!card) return;
+    let lastFocused: HTMLElement | null = null;
+
+    const focusables = () =>
+      Array.from(
+        popup.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+      ).filter((n) => n.offsetParent !== null);
+
+    const open = () => {
+      lastFocused = document.activeElement as HTMLElement;
+      popup.hidden = false;
+      document.body.style.overflow = 'hidden';
+      // Forced reflow rather than rAF: rAF is starved in a background tab,
+      // which would leave an invisible overlay swallowing clicks.
+      void popup.offsetWidth;
+      popup.classList.add('is-open');
+      (popup.querySelector('.popup-cta') as HTMLElement)?.focus();
+    };
+
+    const close = () => {
+      try { store()?.setItem(key, '1'); } catch { /* ignore */ }
+      popup.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.setTimeout(() => { popup.hidden = true; }, 320);
+      lastFocused?.focus();
+    };
+
+    popup.querySelector('.popup-close')?.addEventListener('click', close);
+    popup.querySelector('.popup-dismiss')?.addEventListener('click', close);
+    // Calling is a success, not a dismissal — but don't show it again either.
+    popup.querySelector('.popup-cta')?.addEventListener('click', () => {
+      try { store()?.setItem(key, '1'); } catch { /* ignore */ }
+    });
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (popup.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      // keep focus inside the dialog
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    });
+
+    window.setTimeout(open, delay);
+  });
+</script>

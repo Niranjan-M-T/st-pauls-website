@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Gallery from '../../components/Gallery.astro';
+
+const gallery = [
+  { src: '/Assets/freezer-glass-dome.jpg', alt: 'Stainless steel freezer box with curved glass viewing dome', label: 'Glass dome unit', position: '50% 40%' },
+  { src: '/Assets/freezer-branded.jpg', alt: "St Paul's branded stainless steel freezer box on rent, Bangalore", label: "St. Paul's unit", position: '50% 55%' },
+  { src: '/Assets/freezer-glass.jpg', alt: 'Freezer box with full glass viewing panels and polished trim', label: 'Viewing panels' },
+  { src: '/Assets/freezer-steel.jpg', alt: 'Stainless steel freezer box with glass surround, ready for delivery', label: 'Stainless steel' },
+  { src: '/Assets/freezer-in-transit.jpg', alt: 'Freezer box loaded in the van for delivery to a home or hospital', label: 'Delivered to you', position: '50% 55%' },
+];
+---
+
+<Layout title="Dead Body Freezer Box on Rent Bangalore" description="24/7 dead body freezer box on rent in Bangalore to preserve the remains of your loved ones safely. Delivered within hours.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="Delivered within hours · 24/7"
+      title="Freezer box on rent,"
+      titleAccent="preserved with dignity."
+      lede="Safe, hygienic preservation of your loved one at home or hospital — our team delivers, installs and maintains the freezer box anywhere in Bangalore."
+    />
+
+    <section class="section">
+      <div class="container split">
+        <div class="split-copy reveal">
+          <span class="eyebrow">Hygienic preservation</span>
+          <h2>Time for every relative <em class="serif-italic text-gold">to say goodbye</em></h2>
+          <p>When family must travel from out of town or overseas, preservation becomes essential. Our freezer boxes maintain the optimal temperature to keep your loved one peaceful and presentable until everyone has gathered.</p>
+          <ul class="check-list">
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Delivered to home or hospital within hours</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Consistent, monitored temperature control</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Sanitised before every use</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Available anywhere in Bangalore, 24/7</li>
+          </ul>
+        </div>
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/Enhanced/enhanced_freezer_branded.png" alt="St Paul's branded stainless steel dead body freezer box on rent, Bangalore" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Gallery
+      id="freezers"
+      kicker="Our units"
+      heading="Clean, cooled and"
+      emphasis="ready to deliver"
+      note="Tap any photograph to view it larger. These are the actual units we bring to your home or hospital."
+      items={gallery}
+    />
+
+    <CtaBand
+      accent="Need a freezer box today?"
+      heading="Need a freezer box today? It will be there in hours."
+      note="Call us with your location — our team handles delivery, installation and pickup."
+    />
+  </main>
+
+  <Footer />
+</Layout>

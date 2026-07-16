@@ -1,0 +1,246 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer band">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <p class="footer-kicker">Day or night, we answer</p>
+      <h2 class="footer-headline">We are here <em>when you need us.</em></h2>
+      <div class="footer-phones" data-stagger="80">
+        <a href="tel:+917760911567" class="phone-card reveal">
+          <span class="phone-label">Primary · 24/7</span>
+          <span class="phone-number">77609 11567</span>
+        </a>
+        <a href="tel:+917996794943" class="phone-card reveal">
+          <span class="phone-label">Alternate · 24/7</span>
+          <span class="phone-number">79967 94943</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">St. Paul&rsquo;s Funeral Undertakers</p>
+        <p class="footer-desc">Dignified, budget-friendly and complete funeral arrangements — ambulance, mortuary and repatriation services across Bangalore and beyond.</p>
+        <p class="footer-verse">&ldquo;Precious in the sight of the Lord<br />is the death of his faithful servants.&rdquo;<span class="verse-ref">Psalm 116:15</span></p>
+      </div>
+
+      <nav class="footer-links" aria-label="Services">
+        <p class="footer-heading">Services</p>
+        <ul>
+          <li><a href="/ambulance-service">24/7 Ambulance</a></li>
+          <li><a href="/services/freezer-box">Freezer Box on Rent</a></li>
+          <li><a href="/services/coffin-box">Coffin Boxes</a></li>
+          <li><a href="/services/hearse-van">Hearse Van</a></li>
+          <li><a href="/services/embalming">Embalming &amp; Dressing</a></li>
+          <li><a href="/services/repatriation">International Repatriation</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <p class="footer-heading">Visit us</p>
+        <address>
+          Aathma Vidhya Nagar,<br />
+          Doddagubbi Main Road,<br />
+          Bangalore &ndash; 560077
+        </address>
+        <p class="footer-landmark">Near Lulu Supermarket, Kothanur</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} St. Paul&rsquo;s Funeral Undertakers. All rights reserved.</p>
+      <p class="footer-tag">Serving families with compassion, 24 hours a day.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: clamp(4rem, 8vw, 7rem);
+    padding: clamp(4.5rem, 8vw, 7rem) 0 2.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-cta {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .footer-kicker {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold-2);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-headline {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    margin-bottom: 2.2rem;
+  }
+
+  .footer-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-2);
+  }
+
+  .footer-phones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .phone-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 1rem 1.7rem;
+    border-radius: 1.4rem;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(244, 241, 234, 0.13);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+    transition: transform 500ms var(--ease-spring), background 400ms var(--ease), border-color 400ms var(--ease);
+  }
+
+  .phone-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(194, 161, 99, 0.45);
+  }
+
+  .phone-card:active { transform: scale(0.98); }
+
+  .phone-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(238, 240, 238, 0.55);
+  }
+
+  .phone-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.1rem);
+    font-weight: 600;
+    color: #f4f1ea;
+    line-height: 1.15;
+  }
+
+  .phone-card:hover .phone-number { color: var(--gold-2); }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid rgba(244, 241, 234, 0.12);
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: #f4f1ea;
+    margin-bottom: 0.9rem;
+  }
+
+  .footer-desc {
+    font-size: 0.92rem;
+    max-width: 40ch;
+  }
+
+  .footer-verse {
+    margin-top: 1.8rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: rgba(238, 240, 238, 0.6);
+  }
+
+  .verse-ref {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-2);
+  }
+
+  .footer-heading {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold-2);
+    margin-bottom: 1.3rem;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .footer-links a {
+    font-size: 0.94rem;
+    color: rgba(238, 240, 238, 0.72);
+    transition: color 300ms var(--ease), padding-left 400ms var(--ease-spring);
+  }
+
+  .footer-links a:hover {
+    color: var(--gold-2);
+    padding-left: 0.4rem;
+  }
+
+  address {
+    font-style: normal;
+    font-size: 0.94rem;
+    line-height: 1.8;
+    color: rgba(238, 240, 238, 0.72);
+  }
+
+  .footer-landmark {
+    margin-top: 0.9rem;
+    font-size: 0.84rem;
+    color: rgba(238, 240, 238, 0.5);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: 1.7rem;
+    border-top: 1px solid rgba(244, 241, 234, 0.1);
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: rgba(238, 240, 238, 0.45);
+  }
+
+  .footer-tag { font-style: italic; font-family: var(--font-display); font-size: 0.92rem; }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2.4rem;
+    }
+
+    .footer-bottom { justify-content: center; text-align: center; }
+  }
+</style>

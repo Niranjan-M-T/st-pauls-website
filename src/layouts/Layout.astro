@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "FuneralHome",
+  "name": "St. Paul's Funeral Undertakers",
+  "description": "Dignified 24/7 funeral, ambulance and mortuary services in Bangalore.",
+  "telephone": ["+917760911567", "+917996794943"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Aathma Vidhya Nagar, Doddagubbi Main Road",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "postalCode": "560077",
+    "addressCountry": "IN"
+  },
+  "areaServed": "Bangalore",
+  "openingHours": "Mo-Su 00:00-24:00"
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | St. Paul's Funeral Undertakers</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#101b31" />
+
+    <!-- Fonts: Cormorant Garamond (display) + Plus Jakarta Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | St. Paul's Funeral Undertakers`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="St. Paul's Funeral Undertakers" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Film grain: draw a tiny noise tile once, reuse as fixed overlay -->
+    <script>
+      const c = document.createElement('canvas');
+      c.width = c.height = 120;
+      const ctx = c.getContext('2d');
+      if (ctx) {
+        const img = ctx.createImageData(120, 120);
+        for (let i = 0; i < img.data.length; i += 4) {
+          const v = (Math.random() * 255) | 0;
+          img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+          img.data[i + 3] = 255;
+        }
+        ctx.putImageData(img, 0, 0);
+        document.documentElement.style.setProperty('--grain-img', `url(${c.toDataURL('image/png')})`);
+      }
+    </script>
+
+    <!-- Scroll reveals with sibling stagger -->
+    <script>
+      let pending: Element[] = [];
+
+      const show = (el: Element) => {
+        el.classList.add('visible');
+        observer.unobserve(el);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            show(entry.target);
+            pending = pending.filter(e => e !== entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      // Fallback: fast scrolls can jump an element across the viewport
+      // between observer checks — sweep for anything already passed.
+      let raf = 0;
+      const sweep = () => {
+        raf = 0;
+        if (!pending.length) return;
+        const line = window.innerHeight * 0.92;
+        pending = pending.filter(el => {
+          if (el.getBoundingClientRect().top < line) {
+            show(el);
+            return false;
+          }
+          return true;
+        });
+        if (!pending.length) window.removeEventListener('scroll', onScroll);
+      };
+      const onScroll = () => { if (!raf) raf = requestAnimationFrame(sweep); };
+
+      const initReveals = () => {
+        // Elements inside a [data-stagger] parent get an incremental delay
+        document.querySelectorAll('[data-stagger]').forEach(group => {
+          const step = parseInt(group.getAttribute('data-stagger') || '90', 10);
+          const items = group.querySelectorAll(':scope .reveal, :scope .reveal-on-scroll, :scope .image-reveal');
+          items.forEach((el, i) => {
+            (el as HTMLElement).style.setProperty('--reveal-delay', `${i * step}ms`);
+          });
+        });
+
+        pending = [...document.querySelectorAll('.reveal, .reveal-on-scroll, .image-reveal')];
+        pending.forEach(el => observer.observe(el));
+        window.addEventListener('scroll', onScroll, { passive: true });
+        sweep();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveals);
+      } else {
+        initReveals();
+      }
+    </script>
+  </body>
+</html>

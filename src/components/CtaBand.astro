@@ -1,0 +1,107 @@
+---
+export interface Props {
+  heading?: string;
+  accent?: string;
+  note?: string;
+}
+
+const {
+  heading = 'One call, and everything is taken care of.',
+  accent = 'One call,',
+  note = 'Speak to us any time — we respond immediately, day or night.',
+} = Astro.props;
+
+const rest = heading.startsWith(accent) ? heading.slice(accent.length) : ` ${heading}`;
+---
+
+<section class="cta-band section--tight">
+  <div class="container">
+    <div class="cta-card frame reveal">
+      <div class="frame-core band">
+        <div class="cta-inner">
+          <div class="cta-copy">
+            <h2><em>{accent}</em>{rest}</h2>
+            <p>{note}</p>
+          </div>
+          <div class="cta-actions">
+            <a href="tel:+917760911567" class="btn btn--gold">
+              77609 11567
+              <span class="btn-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+            </a>
+            <a href="/contact" class="cta-secondary">Get directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-card .frame-core {
+    border-radius: calc(var(--radius-lg) - 0.45rem);
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    padding: clamp(2.4rem, 5vw, 4rem) clamp(1.8rem, 5vw, 4rem);
+    flex-wrap: wrap;
+  }
+
+  .cta-copy h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    max-width: 20ch;
+  }
+
+  .cta-copy h2 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-2);
+  }
+
+  .cta-copy p {
+    margin-top: 0.8rem;
+    font-size: 0.98rem;
+    max-width: 46ch;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(238, 240, 238, 0.75);
+    border-bottom: 1px solid rgba(238, 240, 238, 0.25);
+    padding-bottom: 0.25rem;
+    transition: color 300ms var(--ease), border-color 300ms var(--ease);
+  }
+
+  .cta-secondary svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    transition: transform 450ms var(--ease-spring);
+  }
+
+  .cta-secondary:hover {
+    color: var(--gold-2);
+    border-color: var(--gold-2);
+  }
+
+  .cta-secondary:hover svg { transform: translateX(4px); }
+</style>

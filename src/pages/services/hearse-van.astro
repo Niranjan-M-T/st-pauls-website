@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Gallery from '../../components/Gallery.astro';
+
+const gallery = [
+  { src: '/Assets/hearse-qualis.jpg', alt: "St Paul's branded black hearse vehicle, Bangalore", label: 'Our fleet' },
+  { src: '/Assets/hearse-front.jpg', alt: "St Paul's black hearse van, front view", label: 'Hearse van', position: '50% 40%' },
+  { src: '/Assets/hearse-interior.jpg', alt: 'Hearse van interior with cushioned family seating and coffin platform', label: 'Fitted interior', position: '50% 60%' },
+  { src: '/Assets/imgi_6_st-pauls-funeral-undertaker-kothanur-bangalore-dead-body-freezer-box-on-rent-xvfcltlfmu.jpg', alt: "St Paul's hearse van ready for a funeral service", label: 'Ready to serve' },
+  { src: '/Assets/hearse-qualis-interior.jpg', alt: 'Hearse interior with coffin platform and side seating', label: 'Family seating' },
+];
+---
+
+<Layout title="Hearse Van Services Bangalore" description="24/7 hearse van services in Bangalore for dignified final journeys. Air-conditioned, well-maintained vans with respectful staff.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="The final journey · 24/7"
+      title="Hearse vans,"
+      titleAccent="for a respectful farewell."
+      lede="Fully air-conditioned, well-maintained hearse vans carrying your loved one from home or hospital to church, crematorium or burial ground — smoothly and with reverence."
+    />
+
+    <section class="section">
+      <div class="container split">
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/Enhanced/enhanced_hearse_rear.png" alt="St Paul's black hearse van showing services and 24/7 contact numbers, Bangalore" style="object-position: 50% 50%;" />
+            </div>
+          </div>
+        </div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">Dignified transportation</span>
+          <h2>A calm, unhurried <em class="serif-italic text-gold">final journey</em></h2>
+          <p>Our experienced drivers and staff ensure a smooth and respectful journey, navigating Bangalore traffic with care so the family can focus on what matters.</p>
+          <ul class="check-list">
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Air-conditioned, immaculately kept vans</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Proper stretcher and coffin platforms</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Seating for accompanying family members</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> City-wide and out-of-state journeys</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container split">
+        <div class="split-copy reveal">
+          <span class="eyebrow">Inside the van</span>
+          <h2>Designed for family, <em class="serif-italic text-gold">built for dignity</em></h2>
+          <p>Cushioned seating along both sides lets the family stay close throughout the journey, while the dedicated platform holds the coffin securely and respectfully.</p>
+        </div>
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/hearse-interior.jpg" alt="Hearse van interior with family seating and coffin platform" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Gallery
+      id="hearses"
+      kicker="Our hearse fleet"
+      heading="Every vehicle,"
+      emphasis="kept immaculate"
+      note="Tap any photograph to view it larger. These are the vans that will carry your loved one."
+      items={gallery}
+    />
+
+    <CtaBand
+      accent="Book a hearse van"
+      heading="Book a hearse van — we arrive on time, every time."
+      note="Available round the clock for local and long-distance journeys."
+    />
+  </main>
+
+  <Footer />
+</Layout>

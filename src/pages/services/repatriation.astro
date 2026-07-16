@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+---
+
+<Layout title="International & Domestic Repatriation Services" description="Seamless domestic and international dead body repatriation from Bangalore. Complete paperwork, embassy clearances and flight arrangements.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="Air & road · India and abroad"
+      title="Bringing loved ones"
+      titleAccent="home, across any border."
+      lede="Repatriation involves complex legalities, clearances and coordination. We manage the entire journey — death certificates, embassy clearances, embalming certificates and airway bills — so your family doesn't have to."
+    />
+
+    <section class="section">
+      <div class="container split">
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/international-repatriation.png" alt="Casket being received at the aircraft — international repatriation" />
+            </div>
+          </div>
+        </div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">Seamless border crossings</span>
+          <h2>Every document, <em class="serif-italic text-gold">every clearance</em></h2>
+          <p>Whether transporting by air or road, we coordinate with airlines, embassies and authorities to ensure your loved one returns home safely and swiftly.</p>
+          <ul class="check-list">
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Death certificate &amp; police clearance</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Embalming &amp; coffin-sealing certificates</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Embassy &amp; customs coordination</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Airline booking &amp; airway bills</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Door-to-door: domestic &amp; international</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <CtaBand
+      accent="Wherever home is,"
+      heading="Wherever home is, we will take them there."
+      note="Call us with the destination — we begin the paperwork immediately."
+    />
+  </main>
+
+  <Footer />
+</Layout>

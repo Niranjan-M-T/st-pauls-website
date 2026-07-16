@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FAQ from '../components/FAQ.astro';
+import Gallery from '../components/Gallery.astro';
+import Popup from '../components/Popup.astro';
+
+const gallery = [
+  { src: '/Assets/ambulance-force.jpg', alt: "St Paul's Force ambulance, Kothanur Bangalore", label: 'Our ambulance', position: '50% 45%' },
+  { src: '/Assets/ambulance-eeco-rear.jpg', alt: "St Paul's branded ambulance, rear view with contact details", label: 'Branded fleet', position: '50% 45%' },
+  { src: '/Assets/ambulance-eeco-front.jpg', alt: "St Paul's white ambulance parked and ready, Bangalore", label: 'Always on call', position: '50% 42%' },
+  { src: '/Assets/ambulance-stretcher.jpg', alt: 'Ambulance with rear doors open showing the stretcher and family seating', label: 'Stretcher & seating', position: '50% 38%' },
+  { src: '/Assets/ambulance-interior-night.jpg', alt: 'Ambulance interior with wheeled stretcher, lit and ready at night', label: 'Ready at any hour', position: '50% 45%' },
+];
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const faqs = [
+  {
+    question: "How fast can your ambulance reach Kothanur and surrounding areas?",
+    answer: "We are located near Lulu Supermarket in Kothanur. Our response time within a 7km radius (including Hennur, Horamavu, Kammanahalli, and Kalyan Nagar) is typically 15-20 minutes, 24/7."
+  },
+  {
+    question: "Do you provide out-of-state ambulance services from Bangalore?",
+    answer: "Yes, our ambulance service covers not only local Bangalore transportation but also safe and dignified out-of-state transportation across India."
+  },
+  {
+    question: "Are your ambulances equipped for dead body transportation?",
+    answer: "Yes, our Hearse Vans and Ambulances are specially designed for dignified dead body transportation, complete with proper climate control and stretcher facilities."
+  }
+];
+---
+
+<Layout title="24/7 Ambulance Service Kothanur Bangalore" description="Fast & reliable 24/7 ambulance service in Kothanur, Hennur, Horamavu & 7km radius. Local & out-of-state transportation. Call 77609 11567.">
+  <Header />
+
+  <main>
+    <PageHero
+      kicker="Hyper-local · 15–20 min response"
+      title="24/7 ambulance service,"
+      titleAccent="always minutes away."
+      lede="Rapid-response ambulance and hearse van services around Kothanur — covering Hennur, Horamavu, Kammanahalli and Kalyan Nagar — with out-of-state transport across India."
+    />
+
+    <section class="section">
+      <div class="container split">
+        <div class="split-copy reveal">
+          <span class="eyebrow">When every minute matters</span>
+          <h2>Immediate response, <em class="serif-italic text-gold">day or night</em></h2>
+          <p>Located centrally near Lulu Supermarket in Kothanur, St. Paul&rsquo;s ambulance service guarantees quick arrival within our core 7&nbsp;km service radius — and travels as far as your family needs.</p>
+          <ul class="check-list">
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Available 24 hours, 365 days</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Local Bangalore transportation</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Out-of-state &amp; long-distance transport</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Air-conditioned hearse vans</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 4.5 9 10 3"/></svg></span> Compassionate, professional staff</li>
+          </ul>
+        </div>
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/Enhanced/enhanced_ambulance.png" alt="St Paul's 24/7 ambulance, Kothanur Bangalore" style="object-position: 50% 55%;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container split">
+        <div class="split-media">
+          <div class="frame image-reveal">
+            <div class="frame-core">
+              <img src="/Assets/ambulance-stretcher.jpg" alt="Equipped ambulance interior with wheeled stretcher and family seating, St Paul's Bangalore" style="object-position: 50% 38%;" />
+            </div>
+          </div>
+        </div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">Equipped &amp; ready</span>
+          <h2>Comfortable, clean, <em class="serif-italic text-gold">and properly fitted</em></h2>
+          <p>Each vehicle carries a wheeled stretcher, oxygen support and room for family to travel alongside — so the journey is safe and never rushed.</p>
+          <p>Our crews keep every ambulance sanitised and ready to roll the moment your call comes in.</p>
+        </div>
+      </div>
+    </section>
+
+    <Gallery
+      id="ambulances"
+      kicker="Our ambulances"
+      heading="Maintained, sanitised,"
+      emphasis="always ready"
+      note="Tap any photograph to view it larger. These are the vehicles that answer your call."
+      items={gallery}
+    />
+
+    <section class="section--tight faq-belt">
+      <div class="container">
+        <FAQ faqs={faqs} heading="Ambulance service — common questions" kicker="Good to know" />
+      </div>
+    </section>
+
+    <CtaBand
+      accent="Need an ambulance now?"
+      heading="Need an ambulance now? We answer immediately."
+      note="One call brings a fully equipped vehicle and a calm, professional crew to your door."
+    />
+  </main>
+
+  <Footer />
+
+  <Popup
+    id="ambulance-urgent"
+    variant="urgent"
+    kicker="24/7 emergency response"
+    heading="Need an ambulance"
+    emphasis="right now?"
+    body="Do not wait — call and our crew is on the way. We answer day or night, and reach most of Kothanur, Hennur, Horamavu and Kalyan Nagar within 15–20 minutes."
+    ctaLabel="Call 77609 11567 now"
+    ctaHref="tel:+917760911567"
+    dismissLabel="Not urgent — let me read on"
+    delay={1200}
+    remember="session"
+  />
+</Layout>
+
+<style>
+  .faq-belt {
+    padding-top: clamp(4rem, 7vw, 6rem);
+    padding-bottom: clamp(4rem, 7vw, 6rem);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+</style>
