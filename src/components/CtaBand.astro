@@ -8,7 +8,7 @@ export interface Props {
 const {
   heading = 'One call, and everything is taken care of.',
   accent = 'One call,',
-  note = 'Speak to us any time — we respond immediately, day or night.',
+  note = 'Speak to us any time. We respond immediately, day or night.',
 } = Astro.props;
 
 const rest = heading.startsWith(accent) ? heading.slice(accent.length) : ` ${heading}`;
