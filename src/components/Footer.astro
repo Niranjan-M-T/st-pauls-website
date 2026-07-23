@@ -53,6 +53,8 @@ const year = new Date().getFullYear();
       <p>&copy; {year} St. Paul&rsquo;s Funeral Undertakers. All rights reserved.</p>
       <p class="footer-tag">Serving families with compassion, 24 hours a day.</p>
     </div>
+
+    <p class="footer-credit">Made by <a href="https://studiohappens.tech" target="_blank" rel="noopener">studiohappens.tech</a></p>
   </div>
 </footer>
 
@@ -234,6 +236,26 @@ const year = new Date().getFullYear();
   }
 
   .footer-tag { font-style: italic; font-family: var(--font-display); font-size: 0.92rem; }
+
+  .footer-credit {
+    margin-top: 1.4rem;
+    text-align: center;
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
+    color: rgba(238, 240, 238, 0.28);
+  }
+
+  .footer-credit a {
+    color: rgba(238, 240, 238, 0.42);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(238, 240, 238, 0.14);
+    transition: color 250ms var(--ease), border-color 250ms var(--ease);
+  }
+
+  .footer-credit a:hover {
+    color: var(--gold-2);
+    border-color: var(--gold-2);
+  }
 
   @media (max-width: 860px) {
     .footer-grid {

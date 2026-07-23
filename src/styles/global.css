@@ -135,7 +135,9 @@ a {
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.55);
-  color: var(--gold);
+  /* Darker gold: the small uppercase eyebrow needs >= 4.5:1 for WCAG AA
+     (the display --gold is fine for large text but fails at this size). */
+  color: #785d20;
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.22em;

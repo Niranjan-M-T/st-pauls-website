@@ -4,16 +4,30 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image = '/Assets/Enhanced/enhanced_wreath_hero.webp', noindex = false } = Astro.props;
+
+const fullTitle = `${title} | St. Paul's Funeral Undertakers`;
+const site = Astro.site ?? new URL('https://stpfuneralundertakers.in');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
 
 const businessSchema = {
   "@context": "https://schema.org",
   "@type": "FuneralHome",
+  "@id": `${site.origin}/#business`,
   "name": "St. Paul's Funeral Undertakers",
-  "description": "Dignified 24/7 funeral, ambulance and mortuary services in Bangalore.",
-  "telephone": ["+917760911567", "+917996794943"],
+  "alternateName": "St. Paul's Funeral Undertaker",
+  "url": site.origin,
+  "image": ogImage,
+  "description": "Dignified, budget-friendly 24/7 funeral, ambulance, freezer box, coffin, hearse, embalming and international repatriation services in Kothanur, Bangalore.",
+  "telephone": "+917760911567",
+  "email": "a2zheavyequipments@gmail.com",
+  "priceRange": "₹₹",
+  "currenciesAccepted": "INR",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Aathma Vidhya Nagar, Doddagubbi Main Road",
@@ -22,8 +36,23 @@ const businessSchema = {
     "postalCode": "560077",
     "addressCountry": "IN"
   },
-  "areaServed": "Bangalore",
-  "openingHours": "Mo-Su 00:00-24:00"
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=St.+Paul's+Funeral+Undertakers+SAIACS+Bible+College+Kothanur+Bangalore",
+  "contactPoint": [
+    { "@type": "ContactPoint", "telephone": "+917760911567", "contactType": "emergency", "availableLanguage": ["en", "kn", "hi"], "areaServed": "IN" },
+    { "@type": "ContactPoint", "telephone": "+917996794943", "contactType": "customer service", "availableLanguage": ["en", "kn", "hi"], "areaServed": "IN" }
+  ],
+  "areaServed": ["Kothanur", "Hennur", "Horamavu", "Kammanahalli", "Kalyan Nagar", "Doddagubbi", "Bangalore", "Karnataka", "India"],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "makesOffer": [
+    "24/7 Ambulance Service", "Dead Body Freezer Box on Rent", "Hearse Van Services",
+    "Coffin Boxes", "Embalming & Mortuary", "Crematorium Booking (traditional & electric)",
+    "Funeral Band Set", "International & Domestic Repatriation"
+  ].map((s) => ({ "@type": "Offer", "itemOffered": { "@type": "Service", "name": s } }))
 };
 ---
 
@@ -32,9 +61,25 @@ const businessSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | St. Paul's Funeral Undertakers</title>
+
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TXBXJBQQ');</script>
+    <!-- End Google Tag Manager -->
+
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#101b31" />
+    <link rel="canonical" href={canonical} />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    <meta name="author" content="St. Paul's Funeral Undertakers" />
+    <meta name="geo.region" content="IN-KA" />
+    <meta name="geo.placename" content="Kothanur, Bangalore" />
 
     <!-- Fonts: Lora (display) + Open Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,16 +91,64 @@ const businessSchema = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | St. Paul's Funeral Undertakers`} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="St. Paul's Funeral Undertakers, Bangalore" />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content="St. Paul's Funeral Undertakers" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXBXJBQQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
+
+    <!-- Click tracking: push call/CTA clicks to the GTM dataLayer -->
+    <script is:inline>
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        document.addEventListener('click', function (e) {
+          var el = e.target && e.target.closest
+            ? e.target.closest('a, button')
+            : null;
+          if (!el) return;
+
+          var href = el.getAttribute('href') || '';
+          var text = (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80);
+          var loc = window.location.pathname;
+
+          if (href.indexOf('tel:') === 0) {
+            window.dataLayer.push({
+              event: 'call_click',
+              call_number: href.replace('tel:', ''),
+              cta_text: text,
+              page_path: loc
+            });
+          } else if (href.indexOf('mailto:') === 0) {
+            window.dataLayer.push({ event: 'email_click', email: href.replace('mailto:', ''), page_path: loc });
+          } else if (el.matches('.btn, .cta-secondary, .popup-cta, .popup-dismiss, .card-more, .btn--gold, .btn--ghost, .btn--light')) {
+            window.dataLayer.push({
+              event: 'cta_click',
+              cta_text: text,
+              cta_href: href,
+              page_path: loc
+            });
+          }
+        }, true);
+      })();
+    </script>
 
     <!-- Film grain: draw a tiny noise tile once, reuse as fixed overlay -->
     <script>
